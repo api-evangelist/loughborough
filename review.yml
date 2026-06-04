@@ -1,0 +1,37 @@
+---
+name: Loughborough University
+description: Loughborough University public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/loughborough/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 2
+    summary: >-
+      Loughborough University publishes no first-party developer portal or
+      open-data API. Verified live: the official website (200), the figshare
+      institution-scoped REST endpoint (200), the figshare OAI-PMH endpoint
+      (200), and the GitHub org (200, but zero public repositories). The
+      Shibboleth/SAML IdP metadata URL is referenced in documentation but
+      returned a 500 on probe and is federation-gated, not a general developer
+      resource. No endpoints were fabricated; the programmatic surface is
+      effectively third-party (figshare) plus federated identity.
+    endpoints:
+      - url: https://www.lboro.ac.uk/
+        status: 200
+        note: Official university website, resolves cleanly.
+      - url: https://repository.lboro.ac.uk/
+        status: 202
+        note: Loughborough Research Repository, powered by figshare.
+      - url: https://api.figshare.com/v2/articles?institution=2
+        status: 200
+        note: figshare REST API scoped to Loughborough institution; returns research outputs.
+      - url: https://api.figshare.com/v2/oai?verb=Identify
+        status: 200
+        note: figshare OAI-PMH endpoint; Loughborough scoped via set=portal_2.
+      - url: https://idp.lboro.ac.uk/simplesaml/saml2/idp/metadata.php
+        status: 500
+        note: Shibboleth/SAML IdP metadata; referenced in docs but errored on probe, federation-gated.
+      - url: https://github.com/LoughboroughUniversity
+        status: 200
+        note: Official GitHub org exists but lists zero public repositories.

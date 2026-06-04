@@ -1,0 +1,92 @@
+---
+aid: loughborough
+name: Loughborough University
+description: >-
+  Loughborough University is a public research university in Leicestershire,
+  United Kingdom, ranked #224 in the QS World University Rankings 2025. It is
+  well known for sport, engineering, and design programmes and operates a
+  campus in London alongside its main Loughborough campus. The university does
+  not publish a first-party developer portal or open-data API; its public
+  programmatic footprint is limited to its figshare-powered Loughborough
+  Research Repository (which exposes the standard figshare REST API and an
+  OAI-PMH metadata harvesting endpoint scoped to the institution) and a
+  Shibboleth/SAML identity provider used for federated single sign-on.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/loughborough/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - United Kingdom
+  - Research Data
+  - Open Access
+  - Repository
+  - Identity
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: loughborough:research-repository-rest
+    name: Loughborough Research Repository (figshare REST API)
+    description: >-
+      The Loughborough Research Repository is the institution's research output
+      and dataset repository, powered by figshare. Records are accessible
+      programmatically through the standard figshare v2 REST API filtered to the
+      Loughborough institution, returning articles, datasets, theses, and other
+      research outputs.
+    humanURL: https://docs.figshare.com/
+    baseURL: https://api.figshare.com/v2/articles?institution=2
+    tags: [ Research Data, Repository, Open Access, Datasets, figshare ]
+    properties:
+      - type: Documentation
+        url: https://docs.figshare.com/
+  - aid: loughborough:research-repository-oai
+    name: Loughborough Research Repository OAI-PMH
+    description: >-
+      OAI-PMH metadata harvesting endpoint for the Loughborough Research
+      Repository, served via figshare and scoped to the Loughborough portal
+      set. Supports Open Archives Initiative Protocol for Metadata Harvesting
+      verbs (ListIdentifiers, ListRecords, Identify) for interoperability with
+      aggregators such as CORE and OpenAIRE.
+    humanURL: https://docs.figshare.com/
+    baseURL: https://api.figshare.com/v2/oai?verb=Identify&set=portal_2
+    tags: [ Research Data, OAI-PMH, Metadata, Harvesting, Open Access ]
+    properties:
+      - type: Documentation
+        url: https://docs.figshare.com/
+  - aid: loughborough:shibboleth-idp
+    name: Loughborough Shibboleth/SAML Identity Provider
+    description: >-
+      Loughborough University's Shibboleth-based SAML 2.0 identity provider used
+      for federated single sign-on (the UK Access Management Federation) across
+      university and licensed third-party services. The SAML metadata endpoint
+      is publicly referenced but is access-controlled and intended for
+      federation members rather than general developer use.
+    humanURL: https://www.lboro.ac.uk/services/it/topics/student-account/
+    tags: [ Identity, SSO, SAML, Shibboleth, Authentication ]
+    properties:
+      - type: Documentation
+        url: https://www.lboro.ac.uk/services/it/topics/student-account/
+common:
+  - type: Website
+    url: https://www.lboro.ac.uk/
+  - type: GitHub
+    url: https://github.com/LoughboroughUniversity
+  - type: LinkedIn
+    url: https://uk.linkedin.com/school/loughborough-university/
+  - type: Repository
+    url: https://repository.lboro.ac.uk/
+  - type: Plans
+    url: plans/loughborough-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/loughborough-rate-limits.yml
+  - type: FinOps
+    url: finops/loughborough-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
