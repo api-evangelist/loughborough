@@ -43,6 +43,20 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.figshare.com/
+      - type: OpenAPI
+        url: openapi/loughborough-research-repository-rest.yaml
+      - type: JSONSchema
+        url: json-schema/loughborough-article-schema.json
+      - type: x-json-structure
+        url: json-structure/loughborough-article-structure.json
+      - type: x-example
+        url: examples/loughborough-get-article-example.json
+      - type: x-spectral-rules
+        url: rules/loughborough-rules.yml
+      - type: x-vocabulary
+        url: vocabulary/loughborough-vocabulary.yml
+      - type: x-json-ld-context
+        url: json-ld/loughborough-context.jsonld
   - aid: loughborough:research-repository-oai
     name: Loughborough Research Repository OAI-PMH
     description: >-

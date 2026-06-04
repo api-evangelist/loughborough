@@ -1,0 +1,90 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.figshare.com/v2/articles/32566200",
+    "description": "Retrieve a single Loughborough Research Repository article by id."
+  },
+  "response": {
+    "id": 32566200,
+    "title": "Isoanemeity predicts the effect of leaf versus stem flexure on plant drag",
+    "doi": "",
+    "handle": "2134/32566200.v1",
+    "url": "https://api.figshare.com/v2/articles/32566200",
+    "url_public_html": "https://repository.lboro.ac.uk/articles/journal_contribution/Isoanemeity_predicts_the_effect_of_leaf_versus_stem_flexure_on_plant_drag/32566200",
+    "url_public_api": "https://api.figshare.com/v2/articles/32566200",
+    "published_date": "2026-06-03T15:01:04Z",
+    "thumb": "https://s3-eu-west-1.amazonaws.com/ppreviews-loughborough-81236/65241318/thumb.png",
+    "defined_type": 6,
+    "defined_type_name": "journal contribution",
+    "group_id": 20438,
+    "description": "<p dir=\"ltr\">Flexible vegetation is deflected by fluid flow, reducing drag forces and thus inducing complex feedbacks which affect scalar transport, sediment mobility and biogeochemical cycling. However, we presently lack mathematical models for this disturbance, for all but the simplest plant forms. Studying pinnate stems, we introduce a dimensionless quantity, isoanemeity, which describes how foliage contributes to the phenomenon of flow\u2010induced reconfiguration. Structural deformations are simulated to study leafy stem reconfiguration, and isoanemeity is shown to delineate different types of streamlining behavior. We examine a range of cases from the literature, showing that isoanemeity can provide a quantitative tool for model design of foliated flows, especially applicable to aquatic environments. Further, we hypothesize that isoanemeity may be valuable in investigating plants of greater complexity, such as densely branched terrestrial vegetation.</p><p dir=\"ltr\"><b>Plain Language Summary</b> Rivers and coastlines are environments which are particularly populated with leafy plants, and though the flexibility of vegetation is known to cause them to slow aquatic currents and waves in a unique way, there is no overarching mathematical theory which describes how foliage modifies this effect. To solve this, we introduce \u201cisoanemeity\u201d, which describes whether leaves act rigidly or flexibly, relative to the rest of the plant. Simulations of flexible leafy plants are used to explore this idea, and when compared to modeling in the literature, our results show that isoanemeity characterizes the drag caused by different plant species. Additionally, the results suggest that the unique flow blockage of very complex plants, like trees, may be better understood by further developing our ideas.</p>",
+    "version": 1,
+    "size": 906803,
+    "created_date": "2026-06-03T15:01:04Z",
+    "modified_date": "2026-06-03T15:01:11Z",
+    "is_public": true,
+    "is_embargoed": false,
+    "license": {
+      "value": 1,
+      "name": "CC BY 4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "tags": [
+      "Meteorology & Atmospheric Sciences"
+    ],
+    "keywords": [
+      "Meteorology & Atmospheric Sciences"
+    ],
+    "categories": [],
+    "authors": [
+      {
+        "id": 14370132,
+        "full_name": "Rufus Dickinson",
+        "first_name": "Rufus",
+        "last_name": "Dickinson",
+        "is_active": true,
+        "url_name": "Rufus_Dickinson",
+        "orcid_id": ""
+      },
+      {
+        "id": 2887826,
+        "full_name": "Tim Marjoribanks",
+        "first_name": "Tim",
+        "last_name": "Marjoribanks",
+        "is_active": true,
+        "url_name": "Tim_Marjoribanks",
+        "orcid_id": ""
+      },
+      {
+        "id": 4950574,
+        "full_name": "Chris Keylock",
+        "first_name": "Chris",
+        "last_name": "Keylock",
+        "is_active": true,
+        "url_name": "Chris_Keylock",
+        "orcid_id": ""
+      }
+    ],
+    "timeline": {
+      "posted": "2026-06-03T15:01:04",
+      "publisherAcceptance": "2026-05-02T00:00:00",
+      "publisherPublication": "2026-05-28T00:00:00",
+      "firstOnline": "2026-05-28"
+    },
+    "files": [
+      {
+        "id": 65241318,
+        "name": "Geophysical Research Letters - 2026 - Dickinson - Isoanemeity Predicts the Effect of Leaf Versus Stem Flexure on Plant Drag.pdf",
+        "size": 906803,
+        "is_link_only": false,
+        "download_url": "https://ndownloader.figshare.com/files/65241318",
+        "supplied_md5": "a80afbd50c16ecf760f7d2628da43311",
+        "computed_md5": "a80afbd50c16ecf760f7d2628da43311",
+        "mimetype": "application/pdf"
+      }
+    ],
+    "resource_title": null,
+    "resource_doi": null,
+    "citation": "Dickinson, Rufus; Marjoribanks, Tim; Keylock, Chris (2026). Isoanemeity predicts the effect of leaf versus stem flexure on plant drag. Loughborough University. Journal contribution. https://hdl.handle.net/2134/32566200.v1"
+  }
+}

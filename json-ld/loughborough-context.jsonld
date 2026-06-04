@@ -1,0 +1,86 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "lboro": "https://repository.lboro.ac.uk/vocab#",
+    "figshare": "https://api.figshare.com/v2/vocab#",
+    "@vocab": "https://repository.lboro.ac.uk/vocab#",
+
+    "institution": {
+      "@id": "schema:CollegeOrUniversity",
+      "@type": "@id"
+    },
+    "name": "schema:name",
+    "url": "schema:url",
+    "description": "schema:description",
+
+    "Article": "schema:CreativeWork",
+    "id": "schema:identifier",
+    "title": "schema:name",
+    "doi": {
+      "@id": "schema:identifier",
+      "@type": "@id"
+    },
+    "handle": "schema:identifier",
+    "published_date": {
+      "@id": "schema:datePublished",
+      "@type": "schema:DateTime"
+    },
+    "created_date": {
+      "@id": "schema:dateCreated",
+      "@type": "schema:DateTime"
+    },
+    "modified_date": {
+      "@id": "schema:dateModified",
+      "@type": "schema:DateTime"
+    },
+    "defined_type_name": "schema:additionalType",
+    "description_text": "schema:abstract",
+    "size": "schema:contentSize",
+    "license": {
+      "@id": "schema:license",
+      "@type": "@id"
+    },
+    "citation": "schema:citation",
+    "keywords": "schema:keywords",
+    "tags": "schema:keywords",
+    "url_public_html": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+
+    "authors": {
+      "@id": "schema:author",
+      "@container": "@list"
+    },
+    "Author": "schema:Person",
+    "full_name": "schema:name",
+    "first_name": "schema:givenName",
+    "last_name": "schema:familyName",
+    "orcid_id": {
+      "@id": "schema:identifier",
+      "@type": "@id"
+    },
+
+    "categories": {
+      "@id": "schema:about",
+      "@container": "@set"
+    },
+    "Category": "schema:DefinedTerm",
+
+    "files": {
+      "@id": "schema:associatedMedia",
+      "@container": "@list"
+    },
+    "File": "schema:MediaObject",
+    "download_url": {
+      "@id": "schema:contentUrl",
+      "@type": "@id"
+    },
+    "mimetype": "schema:encodingFormat"
+  },
+  "@type": "institution",
+  "name": "Loughborough University",
+  "url": "https://www.lboro.ac.uk/",
+  "description": "Public research university in Leicestershire, United Kingdom. Its Loughborough Research Repository (repository.lboro.ac.uk) exposes research outputs via the figshare v2 REST API (institution id 2) and an OAI-PMH endpoint (set portal_2)."
+}

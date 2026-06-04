@@ -1,0 +1,60 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.figshare.com/v2/articles?institution=2&page_size=2",
+    "description": "List Loughborough Research Repository articles (figshare institution id 2)."
+  },
+  "response": [
+    {
+      "id": 32566200,
+      "title": "Isoanemeity predicts the effect of leaf versus stem flexure on plant drag",
+      "doi": "",
+      "handle": "2134/32566200.v1",
+      "url": "https://api.figshare.com/v2/articles/32566200",
+      "published_date": "2026-06-03T15:01:04Z",
+      "thumb": "https://s3-eu-west-1.amazonaws.com/ppreviews-loughborough-81236/65241318/thumb.png",
+      "defined_type": 6,
+      "defined_type_name": "journal contribution",
+      "group_id": 20438,
+      "url_private_api": "https://api.figshare.com/v2/account/articles/32566200",
+      "url_public_api": "https://api.figshare.com/v2/articles/32566200",
+      "url_private_html": "https://figshare.com/account/articles/32566200",
+      "url_public_html": "https://repository.lboro.ac.uk/articles/journal_contribution/Isoanemeity_predicts_the_effect_of_leaf_versus_stem_flexure_on_plant_drag/32566200",
+      "timeline": {
+        "posted": "2026-06-03T15:01:04",
+        "firstOnline": "2026-05-28",
+        "publisherPublication": "2026-05-28T00:00:00",
+        "publisherAcceptance": "2026-05-02T00:00:00"
+      },
+      "resource_title": "Numerical Modelling Data",
+      "resource_doi": "10.17028/rd.lboro.30870644",
+      "created_date": "2026-06-03T15:01:04Z",
+      "modified_date": "2026-06-03T15:01:11Z"
+    },
+    {
+      "id": 32546226,
+      "title": "Identity work as a conversion mechanism: Mobilising economic and cultural capital in immigrant entrepreneurship",
+      "doi": "",
+      "handle": "2134/32546226.v1",
+      "url": "https://api.figshare.com/v2/articles/32546226",
+      "published_date": "2026-06-03T14:48:12Z",
+      "thumb": "https://s3-eu-west-1.amazonaws.com/ppreviews-loughborough-81236/65204445/thumb.png",
+      "defined_type": 15,
+      "defined_type_name": "chapter",
+      "group_id": 20438,
+      "url_private_api": "https://api.figshare.com/v2/account/articles/32546226",
+      "url_public_api": "https://api.figshare.com/v2/articles/32546226",
+      "url_private_html": "https://figshare.com/account/articles/32546226",
+      "url_public_html": "https://repository.lboro.ac.uk/articles/chapter/Identity_work_as_a_conversion_mechanism_Mobilising_economic_and_cultural_capital_in_immigrant_entrepreneurship/32546226",
+      "timeline": {
+        "posted": "2026-06-03T14:48:12",
+        "firstOnline": "2026-02-09",
+        "publisherPublication": "2026-02-09T00:00:00"
+      },
+      "resource_title": "Identity work as a conversion mechanism: Mobilising economic and cultural capital in immigrant entrepreneurship",
+      "resource_doi": "10.5772/intechopen.1014127",
+      "created_date": "2026-06-03T14:48:12Z",
+      "modified_date": "2026-06-03T14:48:20Z"
+    }
+  ]
+}

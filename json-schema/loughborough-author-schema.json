@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/loughborough/main/json-schema/loughborough-author-schema.json",
+  "title": "Loughborough Research Repository Author",
+  "description": "An author of a research output in the Loughborough Research Repository (figshare API).",
+  "type": "object",
+  "required": [
+    "full_name"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Author id."
+    },
+    "full_name": {
+      "type": "string"
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "is_active": {
+      "type": "boolean",
+      "description": "True if author has published items."
+    },
+    "url_name": {
+      "type": "string"
+    },
+    "orcid_id": {
+      "type": "string",
+      "description": "Author ORCID iD."
+    }
+  }
+}

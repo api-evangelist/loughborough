@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/loughborough/main/json-structure/loughborough-article-structure.json",
+  "name": "LoughboroughArticle",
+  "description": "JSON Structure for a Loughborough Research Repository research output (figshare API, institution=2).",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int64",
+      "description": "Unique identifier for the article."
+    },
+    "title": {
+      "type": "string"
+    },
+    "doi": {
+      "type": "string"
+    },
+    "handle": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "url_public_html": {
+      "type": "string",
+      "format": "uri"
+    },
+    "url_public_api": {
+      "type": "string",
+      "format": "uri"
+    },
+    "published_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "thumb": {
+      "type": "string"
+    },
+    "defined_type": {
+      "type": "int32"
+    },
+    "defined_type_name": {
+      "type": "string"
+    },
+    "group_id": {
+      "type": "int32"
+    },
+    "description": {
+      "type": "string"
+    },
+    "version": {
+      "type": "int32"
+    },
+    "size": {
+      "type": "int64"
+    },
+    "created_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modified_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "is_public": {
+      "type": "boolean"
+    },
+    "is_embargoed": {
+      "type": "boolean"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "name": "Category",
+        "properties": {
+          "id": {
+            "type": "int32"
+          },
+          "title": {
+            "type": "string"
+          },
+          "parent_id": {
+            "type": "int32"
+          },
+          "path": {
+            "type": "string"
+          },
+          "source_id": {
+            "type": "string"
+          },
+          "taxonomy_id": {
+            "type": "int32"
+          }
+        }
+      }
+    },
+    "authors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "name": "Author",
+        "properties": {
+          "id": {
+            "type": "int32"
+          },
+          "full_name": {
+            "type": "string"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "url_name": {
+            "type": "string"
+          },
+          "orcid_id": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "timeline": {
+      "type": "object",
+      "name": "Timeline",
+      "properties": {
+        "posted": {
+          "type": "string"
+        },
+        "firstOnline": {
+          "type": "string"
+        },
+        "publisherPublication": {
+          "type": "string"
+        },
+        "publisherAcceptance": {
+          "type": "string"
+        }
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "name": "File",
+        "properties": {
+          "id": {
+            "type": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "int64"
+          },
+          "is_link_only": {
+            "type": "boolean"
+          },
+          "download_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "supplied_md5": {
+            "type": "string"
+          },
+          "computed_md5": {
+            "type": "string"
+          },
+          "mimetype": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "resource_title": {
+      "type": "string"
+    },
+    "resource_doi": {
+      "type": "string"
+    },
+    "citation": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "doi",
+    "handle",
+    "url",
+    "defined_type",
+    "defined_type_name"
+  ]
+}

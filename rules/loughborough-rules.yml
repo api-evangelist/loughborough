@@ -1,0 +1,54 @@
+extends: [[spectral:oas, off]]
+documentationUrl: https://docs.figshare.com/
+formats:
+  - oas3
+rules:
+  # The repository API is read-only for consumers; describe operations clearly.
+  loughborough-operation-description:
+    description: Every operation should have a description so consumers understand the research-repository call.
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: description
+      function: truthy
+
+  loughborough-operation-tags:
+    description: figshare operations are grouped by resource tag (articles, authors, collections, etc.).
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: tags
+      function: truthy
+
+  # Public research-output endpoints live under /articles, /collections, /projects, /categories.
+  loughborough-public-research-paths:
+    description: Public read endpoints should sit under a known figshare research-output collection.
+    severity: info
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/(articles|collections|projects|categories|licenses|account|institutions|altmetric|file|search|oai)"
+
+  # Article-like schemas must expose stable identifiers used across the repository.
+  loughborough-article-identifiers:
+    description: Article schemas should expose id, doi and handle persistent identifiers.
+    severity: warn
+    given: $.components.schemas.Article.required
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          contains:
+            enum: [id, doi, handle]
+
+  # Server must target the real figshare v2 API used by the Loughborough repository.
+  loughborough-server-figshare-v2:
+    description: Servers should target the figshare v2 API base URL.
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "api\\.figshare\\.com/v2"

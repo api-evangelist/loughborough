@@ -1,0 +1,61 @@
+vocabulary:
+  name: Loughborough Research Repository Vocabulary
+  description: >-
+    Controlled vocabulary of the core terms used by the Loughborough Research
+    Repository, which is powered by the figshare v2 REST API and scoped to the
+    Loughborough institution (institution id 2 / OAI set portal_2). Terms are
+    drawn directly from the live figshare OpenAPI description and observed
+    Loughborough responses.
+  version: "1.0.0"
+  terms:
+    - term: article
+      definition: >-
+        A single research output in the repository (journal contribution, dataset,
+        thesis, conference item, etc.). The figshare "article" is the primary record type.
+      tags: [object, research-output, figshare]
+    - term: defined_type_name
+      definition: >-
+        Human-readable item type of an article, such as "journal contribution",
+        "dataset", "thesis", "conference contribution" or "figure".
+      tags: [field, classification]
+    - term: doi
+      definition: Digital Object Identifier persistently identifying the research output.
+      tags: [field, identifier, persistent-id]
+    - term: handle
+      definition: Handle System identifier assigned to the research output.
+      tags: [field, identifier, persistent-id]
+    - term: author
+      definition: A contributor credited on a research output, optionally carrying an ORCID iD.
+      tags: [object, person]
+    - term: orcid_id
+      definition: ORCID iD uniquely identifying a researcher across systems.
+      tags: [field, identifier, person]
+    - term: category
+      definition: >-
+        A subject classification term assigned to an article from a figshare or
+        standard taxonomy (FoR, ANZSRC, etc.).
+      tags: [object, taxonomy, classification]
+    - term: license
+      definition: The reuse license under which an article and its files are published.
+      tags: [object, rights, open-access]
+    - term: file
+      definition: A downloadable file attached to an article, with size and MD5 checksums.
+      tags: [object, file, download]
+    - term: timeline
+      definition: >-
+        Set of dated milestones for a research output (posted, firstOnline,
+        publisherAcceptance, publisherPublication).
+      tags: [object, dates]
+    - term: institution
+      definition: >-
+        figshare institution scope; Loughborough is institution id 2, used to
+        filter the public API to Loughborough outputs.
+      tags: [parameter, scope, loughborough]
+    - term: oai-pmh
+      definition: >-
+        Open Archives Initiative Protocol for Metadata Harvesting endpoint exposing
+        Loughborough records as set portal_2 for aggregators such as CORE and OpenAIRE.
+      tags: [protocol, metadata, harvesting]
+    - term: resource_doi
+      definition: DOI of a related underlying resource (e.g. a dataset) linked from an article.
+      tags: [field, identifier, linked-resource]
