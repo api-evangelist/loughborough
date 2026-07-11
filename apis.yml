@@ -85,6 +85,8 @@ apis:
       - type: Documentation
         url: https://www.lboro.ac.uk/services/it/topics/student-account/
 common:
+  - type: OAuthScopes
+    url: scopes/loughborough-scopes.yml
   - type: Website
     url: https://www.lboro.ac.uk/
   - type: GitHub
@@ -101,6 +103,8 @@ common:
     url: finops/loughborough-finops.yml
   - type: Review
     url: review.yml
+  - type: Blog
+    url: https://www.lboro.ac.uk/news-events/rss/
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
