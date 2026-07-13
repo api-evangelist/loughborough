@@ -1,0 +1,13 @@
+{
+  "repo": "loughborough",
+  "feeds": [
+    {
+      "source": "https://www.lboro.ac.uk/news-events/",
+      "feed_url": "https://www.lboro.ac.uk/news-events/rss/",
+      "title": "Loughborough University News",
+      "saved": 11
+    }
+  ],
+  "fetched": "2026-07-11T11:43:46Z",
+  "post_count": 31
+}
