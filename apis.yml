@@ -85,6 +85,8 @@ apis:
       - type: Documentation
         url: https://www.lboro.ac.uk/services/it/topics/student-account/
 common:
+  - type: AgenticAccess
+    url: agentic-access/loughborough-agentic-access.yml
   - type: DomainSecurity
     url: security/loughborough-domain-security.yml
   - type: Authentication
