@@ -1,0 +1,32 @@
+{
+  "provider": "loughborough",
+  "sources": [
+    "loughborough-altmetric-api-openapi.yml",
+    "loughborough-articles-api-openapi.yml",
+    "loughborough-authors-api-openapi.yml",
+    "loughborough-collections-api-openapi.yml",
+    "loughborough-institutions-api-openapi.yml",
+    "loughborough-oauth-api-openapi.yml",
+    "loughborough-other-api-openapi.yml",
+    "loughborough-profiles-api-openapi.yml",
+    "loughborough-projects-api-openapi.yml",
+    "loughborough-symplectic-api-openapi.yml"
+  ],
+  "outputs": [
+    "loughborough-altmetric-api-openapi.yml",
+    "loughborough-articles-api-openapi.yml",
+    "loughborough-authors-api-openapi.yml",
+    "loughborough-collections-api-openapi.yml",
+    "loughborough-institutions-api-openapi.yml",
+    "loughborough-oauth-api-openapi.yml",
+    "loughborough-other-api-openapi.yml",
+    "loughborough-profiles-api-openapi.yml",
+    "loughborough-projects-api-openapi.yml",
+    "loughborough-symplectic-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
