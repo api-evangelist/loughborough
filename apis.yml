@@ -325,6 +325,9 @@ apis:
       - type: x-json-ld-context
         url: json-ld/loughborough-context.jsonld
 common:
+  - type: CapabilityMap
+    url: capabilities/loughborough-capability-edges.yml
+    name: Loughborough University Business Capability Map
   - type: AgenticAccess
     url: agentic-access/loughborough-agentic-access.yml
   - type: DomainSecurity
