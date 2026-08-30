@@ -1,41 +1,47 @@
 aid: loughborough
 name: Loughborough University
+x-type: university
+x-category: Public Research University
 description: >-
-  Loughborough University is a public research university in Leicestershire,
-  United Kingdom, ranked #224 in the QS World University Rankings 2025. It is
-  well known for sport, engineering, and design programmes and operates a
-  campus in London alongside its main Loughborough campus. The university does
-  not publish a first-party developer portal or open-data API; its public
-  programmatic footprint is limited to its figshare-powered Loughborough
-  Research Repository (which exposes the standard figshare REST API and an
-  OAI-PMH metadata harvesting endpoint scoped to the institution) and a
-  Shibboleth/SAML identity provider used for federated single sign-on.
+  Loughborough University is a public research university in Leicestershire, United Kingdom, a
+  member of the Midlands Innovation group, established 1909 and best known for sport science,
+  engineering and design. It publishes no central developer portal, no open-data portal and no
+  first-party OpenAPI, and no such thing was generated for it here. Two surfaces are unambiguously
+  the university's own and are recorded as such: a self-hosted Moodle ("Learn") on Loughborough's
+  own address space running as a 1EdTech LTI 1.3 Advantage platform with a publicly readable JWKS,
+  and a SimpleSAMLphp SAML 2.0 Identity Provider registered in the UK Access Management Federation.
+  Five more carry Loughborough's data on someone else's platform and are recorded as tenancies: a
+  Koha library system whose REST API serves a live Swagger 2.0 description and nineteen keyless
+  /public endpoints — the single most usable programmable surface the institution has, and hosted by
+  PTFS Europe; a VuFind discovery layer whose Search API is deployed but closed; the Loughborough
+  Research Repository, a figshare tenancy; Talis Aspire reading lists; and Springshare LibCal.
+  Loughborough is also a DataCite member in its own right. No contract is stored under this slug,
+  because none of the contracts are Loughborough's to claim.
 type: Index
 deliveryModel:
-  model: saas
-  open_source: false
-  commercial: true
+  model: self-hosted
+  open_source: true
+  commercial: false
   callable_host: true
-  label: Hosted service · you call their endpoint
+  label: Self-hosted open-source stack · you call their endpoint
   confidence: high
   source:
-  - openapi
-  - pricing
-  generated: '2026-08-28'
-  method: derived
+    - probes
+    - conformance
+  generated: '2026-08-30'
+  method: probed
 accessModel:
   pricing: free
-  onboarding: self-serve
+  onboarding: none
   trial: false
   try_now: true
-  public: false
-  label: Free · Self-serve signup
+  public: true
+  label: Free · No signup for the public library endpoints
   confidence: high
   source:
-    - plans
-    - authentication
-  generated: '2026-07-22'
-  method: derived
+    - probes
+  generated: '2026-08-30'
+  method: probed
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/loughborough.png
@@ -45,305 +51,277 @@ tags:
   - Higher Education
   - University
   - United Kingdom
+  - Library
+  - Library Catalog
+  - Identity Federation
+  - Learning Management
   - Research Data
   - Open Access
   - Repository
-  - Identity
 created: '2026-06-03'
-modified: '2026-07-25'
+modified: '2026-08-30'
 specificationVersion: '0.23'
+x-coverage:
+  state: covered
+  reason: covered
+  detail: >-
+    Loughborough was previously profiled from a single Figshare contract. Twenty-two vendor
+    surfaces, all resolving to api.figshare.com, were attributed to the institution — the same
+    document fourteen other universities in this cohort also carried — split by refine-openapis
+    into ten per-tag OpenAPIs and eleven apis[] entries, and everything derived from it
+    (schemas, structures, examples, rulesets, vocabulary, JSON-LD context, scopes,
+    authentication, agentic-access, capability edges and twenty collections) inherited that
+    provenance. All of it has been removed. In its place, seven live surfaces were found by
+    probing lboro.ac.uk hosts directly: the Koha ILS REST API at koha.lboro.ac.uk, which serves
+    an 863KB Swagger 2.0 description naming its own host and answers GET
+    /api/v1/public/libraries with Loughborough's own library records and no credential; the
+    Moodle LTI 1.3 platform endpoints at learn.lboro.ac.uk, including a public JWKS; the VuFind
+    Search API at vufind.lboro.ac.uk, deployed but returning "Permission denied"; the SAML 2.0
+    IdP at idp.lboro.ac.uk, registered in the UK Access Management Federation aggregate under
+    scope lboro.ac.uk; and the figshare, Talis Aspire and LibCal tenancies. Two of the seven are
+    marked institution — Learn, which has no CNAME and sits in Loughborough's own
+    158.125.161.0/24, and the IdP, whose CNAME target lut.ac.uk is Loughborough's own second
+    registrable domain. The other five carry institution hostnames that CNAME to a platform
+    (ptfse.net, figshare.com, talis.com, libcal.com) and are marked tenant on that basis, which
+    is the same test this pipeline applies to scholarbank.nus.edu.sg. Loughborough is also a DataCite
+    member in its own right (JHAH, prefixes 10.17028 and 10.26174). Two caveats on readability:
+    an Anubis bot challenge fronts the HTML paths on koha.lboro.ac.uk and vufind.lboro.ac.uk,
+    which is why the Koha OAI-PMH responder could not be read, and the only OAI-PMH that does
+    answer is Figshare's shared endpoint scoped by set=portal_2 — a tenant surface, not an
+    institution one.
+  generated: '2026-08-30'
+  method: probed
+  evidence:
+    - url: https://koha.lboro.ac.uk/api/v1/
+      status: 200
+    - url: https://koha.lboro.ac.uk/api/v1/public/libraries
+      status: 200
+    - url: https://learn.lboro.ac.uk/mod/lti/certs.php
+      status: 200
+    - url: https://vufind.lboro.ac.uk/api/v1/search?lookfor=test&limit=1
+      status: 403
+    - url: https://idp.lboro.ac.uk/simplesaml/saml2/idp/SSOService.php
+      status: 400
+    - url: http://metadata.ukfederation.org.uk/ukfederation-metadata.xml
+      status: 200
+    - url: https://api.datacite.org/clients/bl.lboro
+      status: 200
+    - url: https://koha.lboro.ac.uk/cgi-bin/koha/oai.pl?verb=Identify
+      status: 200
+    - url: https://api.lboro.ac.uk/
+      status: 0
+    - url: https://data.lboro.ac.uk/
+      status: 0
 apis:
-  - aid: loughborough:research-repository-oai
-    name: Loughborough Research Repository OAI-PMH
+  - aid: loughborough:library-catalogue-api
+    name: Loughborough University Library Catalogue API (Koha)
+    x-operator: tenant
     description: >-
-      OAI-PMH metadata harvesting endpoint for the Loughborough Research Repository, served via figshare
-      and scoped to the Loughborough portal set. Supports Open Archives Initiative Protocol for Metadata
-      Harvesting verbs (ListIdentifiers, ListRecords, Identify) for interoperability with aggregators such
-      as CORE and OpenAIRE.
-    humanURL: https://docs.figshare.com/
-    baseURL: https://api.figshare.com/v2/oai?verb=Identify&set=portal_2
+      The REST API of Loughborough University Library's Koha integrated library system, served
+      from the university's own koha.lboro.ac.uk host. The live description at /api/v1/ is a
+      Swagger 2.0 document declaring host koha.lboro.ac.uk and basePath /api/v1 across 249 paths
+      and 79 tags, nineteen of them under /public. GET /api/v1/public/libraries returns
+      Loughborough's own branch records — London Library at Here East, the Inter-Library Loan
+      Service, library@lboro.ac.uk — with no credential at all. Staff paths require
+      authentication (401). Koha is community open-source software and the contract's
+      info.contact is the Koha Development Team, so no copy of the specification is stored under
+      Loughborough's slug; the deployment, the host and the data are Loughborough's and that is
+      what is credited here. The instance is under managed hosting by PTFS Europe
+      (koha.lboro.ac.uk CNAMEs to lboro.koha.servers.ptfse.net). An Anubis bot challenge fronts
+      the HTML paths on this host; the JSON API paths pass through it.
+    humanURL: https://www.lboro.ac.uk/services/library/search/
+    baseURL: https://koha.lboro.ac.uk/api/v1/
     tags:
-      - Research Data
-      - OAI-PMH
-      - Metadata
-      - Harvesting
+      - Library
+      - Library Catalog
+      - Bibliographic
       - Open Access
     properties:
+      - type: APIReference
+        url: https://koha.lboro.ac.uk/api/v1/.html
       - type: Documentation
-        url: https://docs.figshare.com/
-  - aid: loughborough:loughborough-altmetric-api
-    name: Loughborough University altmetric API
-    description: The altmetric API from Loughborough University — 1 operation(s) for altmetric.
-    humanURL: https://docs.figshare.com/
-    baseURL: https://api.figshare.com/v2/articles?institution=2
-    tags:
-      - altmetric
-    properties:
-      - type: OpenAPI
-        url: openapi/loughborough-altmetric-api-openapi.yml
-      - type: Documentation
-        url: https://docs.figshare.com/
-      - type: JSONSchema
-        url: json-schema/loughborough-article-schema.json
-      - type: x-json-structure
-        url: json-structure/loughborough-article-structure.json
+        url: https://koha.lboro.ac.uk/api/v1/
       - type: x-example
-        url: examples/loughborough-get-article-example.json
-      - type: x-spectral-rules
-        url: rules/loughborough-rules.yml
-      - type: x-vocabulary
-        url: vocabulary/loughborough-vocabulary.yml
-      - type: x-json-ld-context
-        url: json-ld/loughborough-context.jsonld
-  - aid: loughborough:loughborough-articles-api
-    name: Loughborough University articles API
-    description: The articles API from Loughborough University — 34 operation(s) for articles.
-    humanURL: https://docs.figshare.com/
-    baseURL: https://api.figshare.com/v2/articles?institution=2
+        url: examples/loughborough-koha-public-libraries-example.json
+  - aid: loughborough:learn-lti-platform
+    name: Loughborough Learn — LTI 1.3 Advantage Platform (Moodle)
+    x-operator: institution
+    description: >-
+      Loughborough's virtual learning environment, "Learn", is a Moodle instance self-hosted at
+      learn.lboro.ac.uk in the university's own 158.125.161.0/24 address space. It runs as a
+      1EdTech (IMS Global) LTI 1.3 / LTI Advantage PLATFORM: the OIDC login endpoint
+      (/mod/lti/auth.php), the access-token endpoint (/mod/lti/token.php) and a publicly readable
+      JWKS (/mod/lti/certs.php, one RSA RS256 key) all answer live. The same deployment exposes
+      Moodle Web Services at /webservice/rest/server.php, which returns a structured
+      moodle_exception invalidtoken without a token — deployed, machine-readable, credentialed.
+      The LTI platform issuer is https://learn.lboro.ac.uk. Moodle is community open-source
+      software; no Moodle specification is stored under Loughborough's slug. The LTI platform role, the keys and the tenancy are Loughborough's.
+    humanURL: https://learn.lboro.ac.uk/
+    baseURL: https://learn.lboro.ac.uk/
     tags:
-      - Articles
-    tags_raw:
-      - articles
-    properties:
-      - type: OpenAPI
-        url: openapi/loughborough-articles-api-openapi.yml
-      - type: Documentation
-        url: https://docs.figshare.com/
-      - type: JSONSchema
-        url: json-schema/loughborough-article-schema.json
-      - type: x-json-structure
-        url: json-structure/loughborough-article-structure.json
-      - type: x-example
-        url: examples/loughborough-get-article-example.json
-      - type: x-spectral-rules
-        url: rules/loughborough-rules.yml
-      - type: x-vocabulary
-        url: vocabulary/loughborough-vocabulary.yml
-      - type: x-json-ld-context
-        url: json-ld/loughborough-context.jsonld
-  - aid: loughborough:loughborough-authors-api
-    name: Loughborough University authors API
-    description: The authors API from Loughborough University — 2 operation(s) for authors.
-    humanURL: https://docs.figshare.com/
-    baseURL: https://api.figshare.com/v2/articles?institution=2
-    tags:
-      - Authors
-    tags_raw:
-      - authors
-    properties:
-      - type: OpenAPI
-        url: openapi/loughborough-authors-api-openapi.yml
-      - type: Documentation
-        url: https://docs.figshare.com/
-      - type: JSONSchema
-        url: json-schema/loughborough-article-schema.json
-      - type: x-json-structure
-        url: json-structure/loughborough-article-structure.json
-      - type: x-example
-        url: examples/loughborough-get-article-example.json
-      - type: x-spectral-rules
-        url: rules/loughborough-rules.yml
-      - type: x-vocabulary
-        url: vocabulary/loughborough-vocabulary.yml
-      - type: x-json-ld-context
-        url: json-ld/loughborough-context.jsonld
-  - aid: loughborough:loughborough-collections-api
-    name: Loughborough University collections API
-    description: The collections API from Loughborough University — 21 operation(s) for collections.
-    humanURL: https://docs.figshare.com/
-    baseURL: https://api.figshare.com/v2/articles?institution=2
-    tags:
-      - Collection
-    tags_raw:
-      - collections
-    properties:
-      - type: OpenAPI
-        url: openapi/loughborough-collections-api-openapi.yml
-      - type: Documentation
-        url: https://docs.figshare.com/
-      - type: JSONSchema
-        url: json-schema/loughborough-article-schema.json
-      - type: x-json-structure
-        url: json-structure/loughborough-article-structure.json
-      - type: x-example
-        url: examples/loughborough-get-article-example.json
-      - type: x-spectral-rules
-        url: rules/loughborough-rules.yml
-      - type: x-vocabulary
-        url: vocabulary/loughborough-vocabulary.yml
-      - type: x-json-ld-context
-        url: json-ld/loughborough-context.jsonld
-  - aid: loughborough:loughborough-institutions-api
-    name: Loughborough University institutions API
-    description: The institutions API from Loughborough University — 20 operation(s) for institutions.
-    humanURL: https://docs.figshare.com/
-    baseURL: https://api.figshare.com/v2/articles?institution=2
-    tags:
-      - institutions
-    properties:
-      - type: OpenAPI
-        url: openapi/loughborough-institutions-api-openapi.yml
-      - type: Documentation
-        url: https://docs.figshare.com/
-      - type: JSONSchema
-        url: json-schema/loughborough-article-schema.json
-      - type: x-json-structure
-        url: json-structure/loughborough-article-structure.json
-      - type: x-example
-        url: examples/loughborough-get-article-example.json
-      - type: x-spectral-rules
-        url: rules/loughborough-rules.yml
-      - type: x-vocabulary
-        url: vocabulary/loughborough-vocabulary.yml
-      - type: x-json-ld-context
-        url: json-ld/loughborough-context.jsonld
-  - aid: loughborough:loughborough-oauth-api
-    name: Loughborough University oauth API
-    description: The oauth API from Loughborough University — 1 operation(s) for oauth.
-    humanURL: https://docs.figshare.com/
-    baseURL: https://api.figshare.com/v2/articles?institution=2
-    tags:
+      - Learning Management
+      - LTI
+      - Education
       - Authentication
-    tags_raw:
-      - oauth
     properties:
-      - type: OpenAPI
-        url: openapi/loughborough-oauth-api-openapi.yml
-      - type: Documentation
-        url: https://docs.figshare.com/
-      - type: JSONSchema
-        url: json-schema/loughborough-article-schema.json
-      - type: x-json-structure
-        url: json-structure/loughborough-article-structure.json
+      - type: x-jwks
+        url: https://learn.lboro.ac.uk/mod/lti/certs.php
       - type: x-example
-        url: examples/loughborough-get-article-example.json
-      - type: x-spectral-rules
-        url: rules/loughborough-rules.yml
-      - type: x-vocabulary
-        url: vocabulary/loughborough-vocabulary.yml
-      - type: x-json-ld-context
-        url: json-ld/loughborough-context.jsonld
-  - aid: loughborough:loughborough-other-api
-    name: Loughborough University other API
-    description: The other API from Loughborough University — 7 operation(s) for other.
-    humanURL: https://docs.figshare.com/
-    baseURL: https://api.figshare.com/v2/articles?institution=2
-    tags: []
-    tags_raw:
-      - other
-    properties:
-      - type: OpenAPI
-        url: openapi/loughborough-other-api-openapi.yml
+        url: examples/loughborough-moodle-lti-jwks-example.json
       - type: Documentation
-        url: https://docs.figshare.com/
-      - type: JSONSchema
-        url: json-schema/loughborough-article-schema.json
-      - type: x-json-structure
-        url: json-structure/loughborough-article-structure.json
-      - type: x-example
-        url: examples/loughborough-get-article-example.json
-      - type: x-spectral-rules
-        url: rules/loughborough-rules.yml
-      - type: x-vocabulary
-        url: vocabulary/loughborough-vocabulary.yml
-      - type: x-json-ld-context
-        url: json-ld/loughborough-context.jsonld
-  - aid: loughborough:loughborough-profiles-api
-    name: Loughborough University profiles API
-    description: The profiles API from Loughborough University — 2 operation(s) for profiles.
-    humanURL: https://docs.figshare.com/
-    baseURL: https://api.figshare.com/v2/articles?institution=2
+        url: https://learn.lboro.ac.uk/
+  - aid: loughborough:identity-federation
+    name: Loughborough University SAML 2.0 Identity Provider
+    x-operator: institution
+    description: >-
+      Loughborough operates its own SAML 2.0 Identity Provider — SimpleSAMLphp, Loughborough-branded,
+      at idp.lboro.ac.uk — and is registered in the UK Access Management Federation, which feeds
+      eduGAIN. The host CNAMEs to idp.lut.ac.uk (158.125.162.229); lut.ac.uk is Loughborough's OWN
+      second registrable domain, retained from Loughborough University of Technology, and
+      158.125.0.0/16 is Loughborough's own allocation — so this CNAME is internal, not a tenancy.
+      It is declared in 0-working/university-affiliates.json so the cohort audit's --resolve rule
+      stops reading the university's own IdP as a lut.ac.uk tenant. The
+      federation aggregate is the machine-readable artifact: entityID
+      https://idp.lboro.ac.uk/simplesaml/saml2/idp/metadata.php, mdui:DisplayName "Loughborough
+      University", shibmd:Scope lboro.ac.uk, SingleSignOnService at
+      https://idp.lboro.ac.uk/simplesaml/saml2/idp/SSOService.php (400 without a SAMLRequest,
+      which is the live behaviour). The university also registers a Shibboleth Service Provider,
+      MEGS VLE, at https://megsvle.lboro.ac.uk/shibboleth. Identity federation is
+      institution-operated by definition and is the surface class most often missed for this
+      cohort.
+    humanURL: https://www.ukfederation.org.uk/
+    baseURL: https://idp.lboro.ac.uk/simplesaml/saml2/idp/SSOService.php
     tags:
-      - Profiles
-    tags_raw:
-      - profiles
+      - Identity
+      - Identity Federation
+      - SAML
+      - Shibboleth
+      - Single Sign-On
     properties:
-      - type: OpenAPI
-        url: openapi/loughborough-profiles-api-openapi.yml
-      - type: Documentation
-        url: https://docs.figshare.com/
-      - type: JSONSchema
-        url: json-schema/loughborough-article-schema.json
-      - type: x-json-structure
-        url: json-structure/loughborough-article-structure.json
-      - type: x-example
-        url: examples/loughborough-get-article-example.json
-      - type: x-spectral-rules
-        url: rules/loughborough-rules.yml
-      - type: x-vocabulary
-        url: vocabulary/loughborough-vocabulary.yml
-      - type: x-json-ld-context
-        url: json-ld/loughborough-context.jsonld
-  - aid: loughborough:loughborough-projects-api
-    name: Loughborough University projects API
-    description: The projects API from Loughborough University — 17 operation(s) for projects.
-    humanURL: https://docs.figshare.com/
-    baseURL: https://api.figshare.com/v2/articles?institution=2
+      - type: x-saml-metadata
+        url: http://metadata.ukfederation.org.uk/ukfederation-metadata.xml
+      - type: x-conformance
+        url: conformance/loughborough-conformance.yml
+  - aid: loughborough:vufind-discovery
+    name: Loughborough University Library Discovery (VuFind)
+    x-operator: tenant
+    description: >-
+      VuFind discovery layer at vufind.lboro.ac.uk, the public search interface over the Koha
+      catalogue, on managed hosting by PTFS Europe (CNAME
+      lboro-vufind.infrastructure.servers.ptfse.net). VuFind's Search API is present at /api/v1
+      but is not open: /api/v1/search and /api/v1/record both return HTTP 403 with
+      {"status":"ERROR","statusMessage":"Permission denied"}. The VuFind OAI-PMH responder at
+      /OAI/Server and the HTML surface are behind an Anubis bot challenge and returned an
+      interstitial rather than content on every attempt. Recorded because the surface is real and
+      deployed, not because it is usable — the honest state is deployed-but-closed.
+    humanURL: https://vufind.lboro.ac.uk/
+    baseURL: https://vufind.lboro.ac.uk/api/v1
     tags:
-      - Project
-    tags_raw:
-      - projects
+      - Library
+      - Discovery
+      - Search
     properties:
-      - type: OpenAPI
-        url: openapi/loughborough-projects-api-openapi.yml
       - type: Documentation
-        url: https://docs.figshare.com/
-      - type: JSONSchema
-        url: json-schema/loughborough-article-schema.json
-      - type: x-json-structure
-        url: json-structure/loughborough-article-structure.json
-      - type: x-example
-        url: examples/loughborough-get-article-example.json
-      - type: x-spectral-rules
-        url: rules/loughborough-rules.yml
-      - type: x-vocabulary
-        url: vocabulary/loughborough-vocabulary.yml
-      - type: x-json-ld-context
-        url: json-ld/loughborough-context.jsonld
-  - aid: loughborough:loughborough-symplectic-api
-    name: Loughborough University symplectic API
-    description: The symplectic API from Loughborough University — 5 operation(s) for symplectic.
-    humanURL: https://docs.figshare.com/
-    baseURL: https://api.figshare.com/v2/articles?institution=2
+        url: https://www.lboro.ac.uk/services/library/search/
+  - aid: loughborough:research-repository
+    name: Loughborough University Research Repository (figshare tenancy)
+    x-operator: tenant
+    description: >-
+      The Loughborough Research Repository is the university's institutional repository for all
+      research outputs, and it is a figshare tenancy: repository.lboro.ac.uk, lboro.figshare.com
+      and the legacy dspace.lboro.ac.uk all CNAME to figshare.com. The data, the DOIs (DataCite
+      prefixes 10.17028 and 10.26174 under member JHAH, client BL.LBORO) and the corpus are
+      Loughborough's; the API contract is figshare's, published on the shared api.figshare.com/v2
+      host that every figshare customer uses. Harvesting works over OAI-PMH at
+      https://api.figshare.com/v2/oai with set=portal_2 — confirmed as Loughborough's by pulling
+      ListRecords on that set and finding DOI prefix 10.17028 — but Identify on that endpoint
+      names repositoryName "figshare" and adminEmail info@figshare.com. This is recorded as ONE
+      tenant relationship. It was previously recorded as eleven separate APIs backed by ten
+      per-tag copies of figshare's specification; those have been removed.
+    humanURL: https://repository.lboro.ac.uk/
+    baseURL: https://repository.lboro.ac.uk/
     tags:
-      - symplectic
+      - Research Data
+      - Repository
+      - Open Access
+      - OAI-PMH
+      - Metadata
     properties:
-      - type: OpenAPI
-        url: openapi/loughborough-symplectic-api-openapi.yml
       - type: Documentation
         url: https://docs.figshare.com/
-      - type: JSONSchema
-        url: json-schema/loughborough-article-schema.json
-      - type: x-json-structure
-        url: json-structure/loughborough-article-structure.json
-      - type: x-example
-        url: examples/loughborough-get-article-example.json
-      - type: x-spectral-rules
-        url: rules/loughborough-rules.yml
-      - type: x-vocabulary
-        url: vocabulary/loughborough-vocabulary.yml
-      - type: x-json-ld-context
-        url: json-ld/loughborough-context.jsonld
+      - type: x-oai-pmh
+        url: https://api.figshare.com/v2/oai?verb=Identify&set=portal_2
+      - type: x-vendor-repo
+        url: https://github.com/api-evangelist/figshare
+      - type: x-conformance
+        url: conformance/loughborough-conformance.yml
+  - aid: loughborough:reading-lists
+    name: Loughborough University Reading Lists (Talis Aspire tenancy)
+    x-operator: tenant
+    description: >-
+      Loughborough's reading lists run on Talis Aspire at lboro.rl.talis.com. The tenancy exposes
+      linked data: https://lboro.rl.talis.com/index.json returns 200 application/json describing
+      the institution in RDF terms as an aiiso:Institution named "Loughborough University". The
+      list content and organisational structure are Loughborough's; the platform, the vocabulary
+      and the API are Talis's.
+    humanURL: https://lboro.rl.talis.com/
+    baseURL: https://lboro.rl.talis.com/index.json
+    tags:
+      - Library
+      - Reading Lists
+      - Linked Data
+      - Education
+    properties:
+      - type: Documentation
+        url: https://lboro.rl.talis.com/
+  - aid: loughborough:libcal
+    name: Loughborough University Library Hours and Bookings (Springshare LibCal tenancy)
+    x-operator: tenant
+    description: >-
+      Room booking, opening hours and library event data run on Springshare LibCal at
+      libcal.lboro.ac.uk (CNAME region-eu.libcal.com). The legacy keyless widget endpoint
+      /api_hours_grid.php?iid=0&format=json answers 200 application/json but returns an empty
+      locations array for the default institution id; the LibCal 1.1 REST API at /api/1.1/*
+      returns 403 without an OAuth client credential. Recorded as a tenant surface that exists
+      and is credentialed, not as an open Loughborough API.
+    humanURL: https://libcal.lboro.ac.uk/
+    baseURL: https://libcal.lboro.ac.uk/api_hours_grid.php?iid=0&format=json
+    tags:
+      - Library
+      - Room Booking
+      - Campus Life
+    properties:
+      - type: Documentation
+        url: https://libcal.lboro.ac.uk/
 common:
-  - type: CapabilityMap
-    url: capabilities/loughborough-capability-edges.yml
-    name: Loughborough University Business Capability Map
-  - type: AgenticAccess
-    url: agentic-access/loughborough-agentic-access.yml
-  - type: DomainSecurity
-    url: security/loughborough-domain-security.yml
-  - type: Authentication
-    url: authentication/loughborough-authentication.yml
-  - type: OAuthScopes
-    url: scopes/loughborough-scopes.yml
   - type: Website
     url: https://www.lboro.ac.uk/
-  - type: GitHub
+  - type: LibraryCatalog
+    url: https://koha.lboro.ac.uk/api/v1/
+  - type: ResearchRepository
+    url: https://repository.lboro.ac.uk/
+  - type: IdentityFederation
+    url: http://metadata.ukfederation.org.uk/ukfederation-metadata.xml
+  - type: Conformance
+    url: conformance/loughborough-conformance.yml
+  - type: GitHubOrganization
     url: https://github.com/LoughboroughUniversity
   - type: LinkedIn
     url: https://uk.linkedin.com/school/loughborough-university/
-  - type: Repository
-    url: https://repository.lboro.ac.uk/
+  - type: Blog
+    url: https://www.lboro.ac.uk/news-events/rss/
+  - type: PrivacyPolicy
+    url: https://www.lboro.ac.uk/privacy/
+  - type: TermsOfService
+    url: https://www.lboro.ac.uk/disclaimer/
+  - type: Support
+    url: https://www.lboro.ac.uk/services/it/
+  - type: Documentation
+    url: https://www.lboro.ac.uk/services/library/research-support/
+  - type: ProductPage
+    url: https://www.lboro.ac.uk/services/it/topics/student-account/
+  - type: DomainSecurity
+    url: security/loughborough-domain-security.yml
   - type: Plans
     url: plans/loughborough-plans-pricing.yml
   - type: RateLimits
@@ -352,10 +330,6 @@ common:
     url: finops/loughborough-finops.yml
   - type: Review
     url: review.yml
-  - type: Blog
-    url: https://www.lboro.ac.uk/news-events/rss/
-  - type: ProductPage
-    url: https://www.lboro.ac.uk/services/it/topics/student-account/
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
