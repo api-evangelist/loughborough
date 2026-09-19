@@ -196,6 +196,12 @@ apis:
       - Identity Federation
       - SAML
       - Shibboleth
+      - SSO
+    tags_raw:
+      - Identity
+      - Identity Federation
+      - SAML
+      - Shibboleth
       - Single Sign-On
     properties:
       - type: x-saml-metadata
