@@ -64,7 +64,7 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Loughborough University is a public research university in Leicestershire, United Kingdom, ranked #224 in the QS World University Rankings 2025. This repository catalogs its public developer and API footprint as an [APIs.json](http://apisjson.org/) provider profile. Loughborough does not operate a first-party developer portal; its confirmed programmatic surface is its figshare-powered research repository (REST + OAI-PMH) and a Shibboleth/SAML identity provider for federated single sign-on.
+Loughborough University is a public research university in Leicestershire, United Kingdom. This repository catalogs its public developer and API footprint as an [APIs.json](http://apisjson.org/) provider profile. Loughborough operates no central developer portal, no open-data portal and no first-party OpenAPI. Two surfaces are unambiguously its own: a self-hosted Moodle acting as an LTI 1.3 Advantage platform, and a SAML 2.0 Identity Provider registered in the UK Access Management Federation. Five more carry Loughborough's data on someone else's platform and are recorded as tenancies — the Koha library REST API (keyless public endpoints, but PTFS Europe hosting), VuFind discovery, the figshare research repository, Talis Aspire reading lists, and Springshare LibCal. No API contract is stored under this slug, because none of the contracts are Loughborough's to claim.
 
 - APIs.json: https://raw.githubusercontent.com/api-evangelist/loughborough/refs/heads/main/apis.yml
 - Run with Naftiko: https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=loughborough-api-evangelist&utm_content=repo
@@ -75,13 +75,52 @@ Loughborough University is a public research university in Leicestershire, Unite
 
 ## Tags
 
-Education, Higher Education, University, United Kingdom, Research Data, Open Access, Repository, Identity
+Education, Higher Education, University, United Kingdom, Library, Library Catalog, Identity Federation, Learning Management, Research Data, Open Access, Repository
 
 ## APIs
 
-- **Loughborough Research Repository (figshare REST API)** — figshare v2 REST API scoped to the Loughborough institution. Docs: https://docs.figshare.com/ — Base: `https://api.figshare.com/v2/articles?institution=2`
-- **Loughborough Research Repository OAI-PMH** — figshare OAI-PMH metadata harvesting endpoint (set `portal_2`). Docs: https://docs.figshare.com/ — Base: `https://api.figshare.com/v2/oai?verb=Identify&set=portal_2`
-- **Loughborough Shibboleth/SAML Identity Provider** — federated SSO (UK Access Management Federation); access-controlled, not general developer use. Docs: https://www.lboro.ac.uk/services/it/topics/student-account/
+Every surface carries an operator. `institution` means Loughborough runs the thing the surface
+describes; `tenant` means the data is Loughborough's and the contract is a vendor's.
+
+**Institution-operated** — no CNAME off Loughborough's own estate
+
+- **Loughborough Learn — LTI 1.3 Advantage Platform (Moodle)** — `institution`. Self-hosted Moodle
+  at `learn.lboro.ac.uk`, A records in the university's own 158.125.161.0/24, running as a 1EdTech
+  LTI 1.3 platform with a public JWKS at `/mod/lti/certs.php`, plus Moodle Web Services at
+  `/webservice/rest/server.php`.
+- **Loughborough University SAML 2.0 Identity Provider** — `institution`. SimpleSAMLphp at
+  `idp.lboro.ac.uk`, registered in the UK Access Management Federation under scope `lboro.ac.uk`.
+  The host CNAMEs to `idp.lut.ac.uk`, but `lut.ac.uk` is Loughborough's OWN second registrable
+  domain (Loughborough University of Technology) — an internal CNAME, not a tenancy. Declared in
+  `0-working/university-affiliates.json` so the cohort audit stops mislabelling it.
+
+**Tenant — institution hostname, vendor platform underneath**
+
+- **Loughborough University Library Catalogue API (Koha)** — `tenant`. The most usable programmable
+  surface the institution has. Live Swagger 2.0 description at `https://koha.lboro.ac.uk/api/v1/`
+  declaring host `koha.lboro.ac.uk`, 249 paths, 19 of them under `/public`.
+  `GET /api/v1/public/libraries` returns Loughborough's own branch records with no credential.
+  Marked tenant because the host CNAMEs to `lboro.koha.servers.ptfse.net` (PTFS Europe managed
+  hosting); Koha is community open-source software and its `info.contact` is the Koha Development
+  Team, so no copy of its specification is stored under this slug.
+- **Loughborough University Library Discovery (VuFind)** — `tenant`. Deployed at
+  `vufind.lboro.ac.uk` (CNAME `lboro-vufind.infrastructure.servers.ptfse.net`); the Search API
+  answers 403 `Permission denied`. Real but closed.
+- **Loughborough University Research Repository (figshare tenancy)** — `tenant`.
+  `repository.lboro.ac.uk`, `lboro.figshare.com` and legacy `dspace.lboro.ac.uk` all CNAME to
+  `figshare.com`. Harvestable over OAI-PMH at `https://api.figshare.com/v2/oai` with `set=portal_2`.
+  DataCite prefixes 10.17028 / 10.26174.
+- **Loughborough University Reading Lists (Talis Aspire tenancy)** — `tenant`. `lboro.rl.talis.com`,
+  linked data at `/index.json`.
+- **Loughborough University Library Hours and Bookings (Springshare LibCal tenancy)** — `tenant`.
+  `libcal.lboro.ac.uk` (CNAME `region-eu.libcal.com`); the 1.1 REST API is OAuth-gated.
+
+## Conformance
+
+Education-regime domain standards verified live and recorded in
+[conformance/loughborough-conformance.yml](conformance/loughborough-conformance.yml): `saml`,
+`shibboleth`, `lti`, `oai-pmh` (tenant), `datacite`. Probed and NOT found: `scim`, `oneroster`,
+`ed-fi`, `caliper`, `qti`, `crossref`, `orcid`.
 
 ## Plans / Rate Limits / FinOps
 
@@ -92,22 +131,33 @@ Education, Higher Education, University, United Kingdom, Research Data, Open Acc
 ## Timestamps
 
 - Created: 2026-06-03
-- Modified: 2026-06-03
+- Modified: 2026-08-30
 
 ## Common Properties
 
 - Website: https://www.lboro.ac.uk/
+- LibraryCatalog: https://koha.lboro.ac.uk/api/v1/
+- ResearchRepository: https://repository.lboro.ac.uk/
+- IdentityFederation: http://metadata.ukfederation.org.uk/ukfederation-metadata.xml
 - GitHub: https://github.com/LoughboroughUniversity
 - LinkedIn: https://uk.linkedin.com/school/loughborough-university/
-- Repository: https://repository.lboro.ac.uk/
 
 ## Notes
 
-- No first-party developer portal or open-data API was found for Loughborough University.
-- The research repository programmatic access is provided by figshare, a third party; endpoints above were verified to resolve (200) at review time.
-- The official GitHub org exists but lists zero public repositories.
-- The Shibboleth/SAML IdP metadata URL is referenced in university documentation but returned a 500 on probe and is federation-gated.
-- No endpoints, docs, or properties were fabricated; only verifiable resources are listed.
+- No first-party developer portal, open-data portal or institution-authored OpenAPI was found, and
+  none was generated.
+- **Correction, 2026-08-30.** This profile previously attributed 22 vendor surfaces — all resolving
+  to `api.figshare.com`, the same contract 14 other universities in this cohort also carried — to
+  Loughborough, split into 11 `apis[]` entries over 10 per-tag OpenAPI copies. Those specs and
+  everything derived from them (schemas, structures, examples, rulesets, vocabulary, JSON-LD
+  context, scopes, authentication, agentic-access, capability edges, 20 collections) have been
+  removed. The repository is now recorded as ONE tenant relationship.
+- An Anubis bot challenge fronts the HTML paths on `koha.lboro.ac.uk` and `vufind.lboro.ac.uk`;
+  the JSON API paths pass through it. The Koha OAI-PMH responder could not be read because of it.
+- The official GitHub org exists and resolves (200) but lists zero public repositories.
+- No endpoints, docs, or properties were fabricated; only verifiable resources are listed, and
+  every claim above has a status code behind it in `apis.yml` `x-coverage.evidence` or
+  `conformance/`.
 
 ## Maintainers
 

@@ -1,0 +1,151 @@
+generated: '2026-08-30'
+method: probed
+source: >-
+  Live probes of Loughborough University hosts and of the registries that carry the
+  institution's own machine-readable entries (UK Access Management Federation metadata
+  aggregate, DataCite REST API, ROR). Every hit below is a fetched URL with a status code.
+provider: Loughborough University
+providerId: loughborough
+regime: education
+note: >-
+  Reward-only. Only standards for which a live artifact or registry record was actually
+  retrieved are listed. Education-regime standards NOT found for this institution are named
+  in `not_found` so the absence is a measurement rather than a silence.
+
+standards:
+
+  - standard: saml
+    status: conformant
+    operator: institution
+    summary: >-
+      Loughborough operates its own SAML 2.0 Identity Provider on idp.lboro.ac.uk
+      (SimpleSAMLphp, Loughborough-branded, CNAME idp.lut.ac.uk -> 158.125.162.229, the
+      university's own address space). It is registered in the UK Access Management
+      Federation aggregate under DisplayName "Loughborough University" with scope
+      lboro.ac.uk, which is the machine-readable artifact.
+    evidence:
+      - url: http://metadata.ukfederation.org.uk/ukfederation-metadata.xml
+        status: 200
+        locator: 'EntityDescriptor entityID="https://idp.lboro.ac.uk/simplesaml/saml2/idp/metadata.php"'
+        detail: 'IDPSSODescriptor; mdui:DisplayName "Loughborough University"; shibmd:Scope lboro.ac.uk'
+      - url: https://idp.lboro.ac.uk/simplesaml/saml2/idp/SSOService.php
+        status: 400
+        detail: Live SAML SSO endpoint; 400 is the expected response to a request carrying no SAMLRequest.
+      - url: https://idp.lboro.ac.uk/simplesaml/saml2/idp/metadata.php
+        status: 303
+        detail: >-
+          Direct metadata URL redirects and then errors (SimpleSAMLphp state-lost page, 500 after
+          redirect). The authoritative machine-readable copy is the federation aggregate above.
+    entity_id: https://idp.lboro.ac.uk/simplesaml/saml2/idp/metadata.php
+
+  - standard: shibboleth
+    status: conformant
+    operator: institution
+    summary: >-
+      Loughborough participates in the UK Access Management Federation as both an IdP (above)
+      and as a Shibboleth Service Provider. The MEGS VLE SP is registered under the
+      university's own domain.
+    evidence:
+      - url: http://metadata.ukfederation.org.uk/ukfederation-metadata.xml
+        status: 200
+        locator: 'EntityDescriptor entityID="https://megsvle.lboro.ac.uk/shibboleth"'
+        detail: >-
+          SPSSODescriptor, mdui:DisplayName "MEGS VLE", AssertionConsumerService endpoints at
+          https://megsvle.lboro.ac.uk/Shibboleth.sso/SAML2/... The SP host resolves
+          (camille.lboro.ac.uk / 158.125.161.2) but does not answer HTTPS from the public internet.
+    caveat: >-
+      Federation registration is verified; the SP host itself is not publicly reachable
+      (connection failure, not an HTTP status).
+
+  - standard: lti
+    status: conformant
+    operator: institution
+    summary: >-
+      Loughborough's self-hosted Moodle ("Learn", learn.lboro.ac.uk, resolving into the
+      university's own 158.125.161.0/24 space) runs as a 1EdTech LTI 1.3 / LTI Advantage
+      PLATFORM. All three platform endpoints answer live and the JWKS is publicly readable.
+    evidence:
+      - url: https://learn.lboro.ac.uk/mod/lti/certs.php
+        status: 200
+        detail: 'Public JWKS, 1 RSA RS256 key, kid d383582c5e7870ff7236. Captured to examples/loughborough-moodle-lti-jwks-example.json'
+      - url: https://learn.lboro.ac.uk/mod/lti/auth.php
+        status: 200
+        detail: LTI 1.3 OIDC third-party-initiated login endpoint (Moodle platform role).
+      - url: https://learn.lboro.ac.uk/mod/lti/token.php
+        status: 400
+        detail: LTI Advantage access-token endpoint; 400 is the expected response to an unsigned request.
+
+  - standard: oai-pmh
+    status: conformant
+    operator: tenant
+    summary: >-
+      The Loughborough Research Repository is harvestable over OAI-PMH, but the base URL is
+      Figshare's shared endpoint and only the `set` parameter scopes it to Loughborough.
+      The protocol conformance is Figshare's; the harvestable corpus is Loughborough's.
+    evidence:
+      - url: https://api.figshare.com/v2/oai?verb=Identify
+        status: 200
+        detail: 'OAI-PMH 2.0; repositoryName "figshare"; adminEmail info@figshare.com — a VENDOR identity, not Loughborough''s.'
+      - url: https://api.figshare.com/v2/oai?verb=ListIdentifiers&metadataPrefix=oai_dc&set=portal_2
+        status: 200
+        detail: >-
+          Returns records carrying setSpec portal_2. A ListRecords pull on the same set returns
+          items under DOI prefix 10.17028, which DataCite assigns to Loughborough — this is how
+          the set was confirmed to be Loughborough's and not another customer's.
+    caveat: >-
+      Recorded as tenant, not institution. No OAI-PMH responder was found on any lboro.ac.uk host;
+      the Koha OAI responder at koha.lboro.ac.uk/cgi-bin/koha/oai.pl is fronted by an Anubis bot
+      challenge and returned an HTML interstitial (200) rather than OAI-PMH XML on every attempt.
+
+  - standard: datacite
+    status: conformant
+    operator: institution
+    summary: >-
+      Loughborough University is a DataCite member in its own right (provider symbol JHAH,
+      British Library consortium) with two assigned DOI prefixes and a registered repository
+      client. The registry records are machine-readable and name the institution directly.
+    evidence:
+      - url: https://api.datacite.org/providers?query=loughborough
+        status: 200
+        detail: >-
+          provider id "jhah", symbol JHAH, name "Loughborough University Research Repository",
+          displayName "Loughborough University", memberType consortium_organization,
+          consortium blco (British Library), rorId https://ror.org/04vg4w365,
+          prefixes 10.17028 and 10.26174.
+      - url: https://api.datacite.org/clients/bl.lboro
+        status: 200
+        detail: >-
+          client id "bl.lboro", symbol BL.LBORO, clientType repository, isActive true,
+          url https://repository.lboro.ac.uk, domains lboro.ac.uk,lboro.figshare.com,
+          figshare.com,repository.lboro.ac.uk, re3data https://doi.org/10.17616/R3564X.
+
+not_found:
+  - standard: scim
+    detail: No SCIM 2.0 /ServiceProviderConfig or /Users endpoint found on any probed lboro.ac.uk host.
+  - standard: oneroster
+    detail: No 1EdTech OneRoster endpoint found; not exposed by the Moodle deployment.
+  - standard: ed-fi
+    detail: US K-12 data standard; not applicable to a UK higher-education institution and not found.
+  - standard: caliper
+    detail: No Caliper Analytics event store or endpoint advertised by learn.lboro.ac.uk.
+  - standard: qti
+    detail: No QTI import/export or delivery endpoint exposed publicly.
+  - standard: crossref
+    detail: >-
+      No Crossref member record was retrieved for Loughborough. Repository DOIs are minted
+      through DataCite (prefixes 10.17028 / 10.26174), not Crossref.
+  - standard: orcid
+    detail: >-
+      Probed pub.orcid.org/v3.0/search for ror-org-id "04vg4w365" — 200 with num-found 0.
+      No ORCID member API integration evidenced from the public surface. Not credited.
+
+registries:
+  - name: Research Organization Registry (ROR)
+    id: https://ror.org/04vg4w365
+    url: https://api.ror.org/organizations/https://ror.org/04vg4w365
+    status: 200
+    detail: 'domains ["lboro.ac.uk"]; established 1909; fundref 501100000857; grid.6571.5; wikidata Q1434547'
+  - name: DataCite
+    id: JHAH / BL.LBORO
+    url: https://api.datacite.org/clients/bl.lboro
+    status: 200

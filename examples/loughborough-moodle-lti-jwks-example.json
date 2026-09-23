@@ -1,0 +1,26 @@
+{
+  "generated": "2026-08-30",
+  "method": "probed",
+  "source": "https://learn.lboro.ac.uk/mod/lti/certs.php",
+  "x-operator": "institution",
+  "note": "Live JWKS published by Loughborough University's self-hosted Moodle ('Learn', learn.lboro.ac.uk, resolving into Loughborough's own 158.125.161.0/24 space) acting as an IMS Global / 1EdTech LTI 1.3 Advantage PLATFORM. Public keys only; no secret material.",
+  "request": {
+    "method": "GET",
+    "url": "https://learn.lboro.ac.uk/mod/lti/certs.php",
+    "auth": "none",
+    "status": 200,
+    "content_type": "application/json"
+  },
+  "response": {
+    "keys": [
+      {
+        "kty": "RSA",
+        "alg": "RS256",
+        "kid": "d383582c5e7870ff7236",
+        "e": "AQAB",
+        "n": "spJWbvjAKnY1OMGf2TeGHoiQ9ZyzeeLNPKtP-Ea7jy9X2sAORSfjYq7tnG5a8n2n4jkocreiQW789x-j_72Ys_yyVT-OMJ2gEcGGVYOo_f5b9npZP0hajc42Q3jt_m-PEuMygrey9g4MpQt0EB9eyifn3k2Cuzgw9132VNIeVIH5xScIhonNDMOWllSBF_G-SywGVPJS9U_9iJamaD1sdTxafBQUk48xIy1lD9Ldlw3yEawrMwHdWJ4329YuqYQqW3KqE7jv2b373Jov93F1M40okQFhQMXMS0IenQA7MTgP8FVshEv3It1BYruA_wsjEykAY2NnKF7kntkYFP132w",
+        "use": "sig"
+      }
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "generated": "2026-08-30",
+  "method": "probed",
+  "source": "https://koha.lboro.ac.uk/api/v1/public/libraries",
+  "x-operator": "tenant",
+  "note": "Live, keyless response from the Koha ILS serving Loughborough University Library. The contract shape is Koha community software (info.contact = Koha Development Team) and the host koha.lboro.ac.uk CNAMEs to lboro.koha.servers.ptfse.net (PTFS Europe managed hosting), so the surface is recorded as a TENANT relationship; the branch records below are Loughborough's own. Captured with a browser User-Agent because an Anubis bot challenge fronts the HTML paths on this host \u2014 the JSON API paths pass through it.",
+  "request": {
+    "method": "GET",
+    "url": "https://koha.lboro.ac.uk/api/v1/public/libraries",
+    "auth": "none",
+    "status": 200,
+    "content_type": "application/json;charset=UTF-8"
+  },
+  "response": [
+    {
+      "address1": "3 Lesney Avenue, The Broadcast Centre, Here East",
+      "address2": "Queen Elizabeth Olympic Park",
+      "address3": null,
+      "city": "London",
+      "country": "UK",
+      "email": "library@lboro.ac.uk",
+      "fax": null,
+      "ill_email": null,
+      "library_id": "LONDON",
+      "name": "London Library",
+      "postal_code": "E15 2GZ",
+      "state": null,
+      "url": null
+    },
+    {
+      "address1": null,
+      "address2": null,
+      "address3": null,
+      "city": null,
+      "country": null,
+      "email": "library@lboro.ac.uk",
+      "fax": null,
+      "ill_email": null,
+      "library_id": "ONLINE",
+      "name": "Online Resource",
+      "postal_code": null,
+      "state": null,
+      "url": null
+    },
+    {
+      "address1": "Inter-Library Loan Service",
+      "address2": "Loughborough University, Epinal Way",
+      "address3": null,
+      "city": "Loughborough",
+      "country": "UK",
+      "email": "library@lboro.ac.uk",
+      "fax": null,
+      "ill_email": null,
+      "library_id": "PILKINGTON",
+      "name": "Pilkington Library",
+      "postal_code": "LE11 3TU",
+      "state": "Leicestershire",
+      "url": null
+    }
+  ]
+}

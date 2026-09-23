@@ -1,0 +1,47 @@
+slug: loughborough
+provider: Loughborough University
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Education
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: articles
+  spec_file: loughborough-articles-api-openapi.yml
+  capability_id: BC-4780.40
+  capability_id_l1: BC-4780
+  capability_name: Scholarly Output & Publication Management
+  confidence: 0.85
+  evidence: GET /articles articles_list Public Articles; article_version_embargo Public Article Embargo
+    for article version; schemas ArticleComplete, FundingCreate, ArticleHandle
+  reason: Figshare-backed research repository deposit and publication of research articles with versions,
+    DOIs/handles, embargo and confidentiality — clearly stewardship of scholarly output and open-access
+    publication.
+- tag: collections
+  spec_file: loughborough-collections-api-openapi.yml
+  capability_id: BC-4780.40
+  capability_id_l1: BC-4780
+  capability_name: Scholarly Output & Publication Management
+  confidence: 0.75
+  evidence: GET /collections/{collection_id}/articles collection_articles Public Collection Articles;
+    schemas CollectionDOI, CollectionHandle, CollectionCompletePrivate
+  reason: Curated collections of deposited research articles with DOIs, versioning and funding metadata
+    in an institutional research repository — stewardship of scholarly output rather than teaching content.
+- tag: projects
+  spec_file: loughborough-projects-api-openapi.yml
+  capability_id: BC-4780
+  capability_id_l1: BC-4780
+  capability_name: Research & Scholarship Management
+  confidence: 0.7
+  evidence: POST /account/projects private_project_create Create project; schemas ProjectCollaboratorInvite,
+    Collaborator, FundingCreate, ProjectArticle
+  reason: Figshare research-repository projects grouping research articles, collaborators and funding
+    — research project/scholarship management. Which sub-capability (collaboration vs scholarly output)
+    is ambiguous, so only L1 asserted.
