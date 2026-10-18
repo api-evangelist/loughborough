@@ -54,6 +54,18 @@ tags:
   - Library
   - Library Catalog
   - Identity Federation
+  - LMS
+  - Research Data
+  - Open Access
+  - Repository
+tags_raw:
+  - Education
+  - Higher Education
+  - University
+  - United Kingdom
+  - Library
+  - Library Catalog
+  - Identity Federation
   - Learning Management
   - Research Data
   - Open Access
@@ -134,6 +146,11 @@ apis:
     tags:
       - Library
       - Library Catalog
+      - Bibliographic Records
+      - Open Access
+    tags_raw:
+      - Library
+      - Library Catalog
       - Bibliographic
       - Open Access
     properties:
@@ -159,6 +176,11 @@ apis:
     humanURL: https://learn.lboro.ac.uk/
     baseURL: https://learn.lboro.ac.uk/
     tags:
+      - LMS
+      - LTI
+      - Education
+      - Authentication
+    tags_raw:
       - Learning Management
       - LTI
       - Education
