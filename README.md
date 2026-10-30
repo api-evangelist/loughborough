@@ -1,4 +1,4 @@
-# Loughborough University (loughborough)
+# Loughborough University
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,101 +64,126 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Loughborough University is a public research university in Leicestershire, United Kingdom. This repository catalogs its public developer and API footprint as an [APIs.json](http://apisjson.org/) provider profile. Loughborough operates no central developer portal, no open-data portal and no first-party OpenAPI. Two surfaces are unambiguously its own: a self-hosted Moodle acting as an LTI 1.3 Advantage platform, and a SAML 2.0 Identity Provider registered in the UK Access Management Federation. Five more carry Loughborough's data on someone else's platform and are recorded as tenancies — the Koha library REST API (keyless public endpoints, but PTFS Europe hosting), VuFind discovery, the figshare research repository, Talis Aspire reading lists, and Springshare LibCal. No API contract is stored under this slug, because none of the contracts are Loughborough's to claim.
+Loughborough University is a public research university in Leicestershire, United Kingdom, a member of the Midlands Innovation group, established 1909 and best known for sport science, engineering and design. It publishes no central developer portal, no open-data portal and no first-party OpenAPI, and no such thing was generated for it here. Two surfaces are unambiguously the university's own and are recorded as such: a self-hosted Moodle ("Learn") on Loughborough's own address space running as a 1EdTech LTI 1.3 Advantage platform with a publicly readable JWKS, and a SimpleSAMLphp SAML 2.0 Identity Provider registered in the UK Access Management Federation. Five more carry Loughborough's data on someone else's platform and are recorded as tenancies: a Koha library system whose REST API serves a live Swagger 2.0 description and nineteen keyless /public endpoints — the single most usable programmable surface the institution has, and hosted by PTFS Europe; a VuFind discovery layer whose Search API is deployed but closed; the Loughborough Research Repository, a figshare tenancy; Talis Aspire reading lists; and Springshare LibCal. Loughborough is also a DataCite member in its own right. No contract is stored under this slug, because none of the contracts are Loughborough's to claim.
 
-- APIs.json: https://raw.githubusercontent.com/api-evangelist/loughborough/refs/heads/main/apis.yml
-- Run with Naftiko: https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=loughborough-api-evangelist&utm_content=repo
+**Areas:** Education · Higher Education · University · United Kingdom · Library · Library Catalog · Identity Federation · LMS · Research Data · Open Access · Repository
 
-## Type
+## Loughborough University on APIs.io
 
-- Index / Consumer / 3rd-Party
+Everything profiled for Loughborough University is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/loughborough/](https://apis.io/providers/loughborough/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (7)
 
-Education, Higher Education, University, United Kingdom, Library, Library Catalog, Identity Federation, Learning Management, Research Data, Open Access, Repository
+- [Loughborough University Library Catalogue API (Koha)](https://apis.io/apis/loughborough/library-catalogue-api/) — The REST API of Loughborough University Library's Koha integrated library system, served from the university's own koha.lboro.ac.uk host. The live…
+- [Loughborough Learn — LTI 1.3 Advantage Platform (Moodle)](https://apis.io/apis/loughborough/learn-lti-platform/) — Loughborough's virtual learning environment, "Learn", is a Moodle instance self-hosted at learn.lboro.ac.uk in the university's own 158.125.161.0/24 address…
+- [Loughborough University SAML 2.0 Identity Provider](https://apis.io/apis/loughborough/identity-federation/) — Loughborough operates its own SAML 2.0 Identity Provider — SimpleSAMLphp, Loughborough-branded, at idp.lboro.ac.uk — and is registered in the UK Access…
+- [Loughborough University Library Discovery (VuFind)](https://apis.io/apis/loughborough/vufind-discovery/) — VuFind discovery layer at vufind.lboro.ac.uk, the public search interface over the Koha catalogue, on managed hosting by PTFS Europe (CNAME…
+- [Loughborough University Research Repository (figshare tenancy)](https://apis.io/apis/loughborough/research-repository/) — The Loughborough Research Repository is the university's institutional repository for all research outputs, and it is a figshare tenancy:…
+- [Loughborough University Reading Lists (Talis Aspire tenancy)](https://apis.io/apis/loughborough/reading-lists/) — Loughborough's reading lists run on Talis Aspire at lboro.rl.talis.com. The tenancy exposes linked data: https://lboro.rl.talis.com/index.json returns 200…
+- [Loughborough University Library Hours and Bookings (Springshare LibCal tenancy)](https://apis.io/apis/loughborough/libcal/) — Room booking, opening hours and library event data run on Springshare LibCal at libcal.lboro.ac.uk (CNAME region-eu.libcal.com). The legacy keyless widget…
 
-## APIs
+### Published properties
 
-Every surface carries an operator. `institution` means Loughborough runs the thing the surface
-describes; `tenant` means the data is Loughborough's and the contract is a vendor's.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-**Institution-operated** — no CNAME off Loughborough's own estate
+#### Vocabulary (1)
 
-- **Loughborough Learn — LTI 1.3 Advantage Platform (Moodle)** — `institution`. Self-hosted Moodle
-  at `learn.lboro.ac.uk`, A records in the university's own 158.125.161.0/24, running as a 1EdTech
-  LTI 1.3 platform with a public JWKS at `/mod/lti/certs.php`, plus Moodle Web Services at
-  `/webservice/rest/server.php`.
-- **Loughborough University SAML 2.0 Identity Provider** — `institution`. SimpleSAMLphp at
-  `idp.lboro.ac.uk`, registered in the UK Access Management Federation under scope `lboro.ac.uk`.
-  The host CNAMEs to `idp.lut.ac.uk`, but `lut.ac.uk` is Loughborough's OWN second registrable
-  domain (Loughborough University of Technology) — an internal CNAME, not a tenancy. Declared in
-  `0-working/university-affiliates.json` so the cohort audit stops mislabelling it.
+The provider's domain terms, defined.
 
-**Tenant — institution hostname, vendor platform underneath**
+- [Loughborough Research Repository Vocabulary](https://apis.io/vocabularies/loughborough/loughborough-vocabulary/)
 
-- **Loughborough University Library Catalogue API (Koha)** — `tenant`. The most usable programmable
-  surface the institution has. Live Swagger 2.0 description at `https://koha.lboro.ac.uk/api/v1/`
-  declaring host `koha.lboro.ac.uk`, 249 paths, 19 of them under `/public`.
-  `GET /api/v1/public/libraries` returns Loughborough's own branch records with no credential.
-  Marked tenant because the host CNAMEs to `lboro.koha.servers.ptfse.net` (PTFS Europe managed
-  hosting); Koha is community open-source software and its `info.contact` is the Koha Development
-  Team, so no copy of its specification is stored under this slug.
-- **Loughborough University Library Discovery (VuFind)** — `tenant`. Deployed at
-  `vufind.lboro.ac.uk` (CNAME `lboro-vufind.infrastructure.servers.ptfse.net`); the Search API
-  answers 403 `Permission denied`. Real but closed.
-- **Loughborough University Research Repository (figshare tenancy)** — `tenant`.
-  `repository.lboro.ac.uk`, `lboro.figshare.com` and legacy `dspace.lboro.ac.uk` all CNAME to
-  `figshare.com`. Harvestable over OAI-PMH at `https://api.figshare.com/v2/oai` with `set=portal_2`.
-  DataCite prefixes 10.17028 / 10.26174.
-- **Loughborough University Reading Lists (Talis Aspire tenancy)** — `tenant`. `lboro.rl.talis.com`,
-  linked data at `/index.json`.
-- **Loughborough University Library Hours and Bookings (Springshare LibCal tenancy)** — `tenant`.
-  `libcal.lboro.ac.uk` (CNAME `region-eu.libcal.com`); the 1.1 REST API is OAuth-gated.
+#### Examples (2)
 
-## Conformance
+Example requests and responses.
 
-Education-regime domain standards verified live and recorded in
-[conformance/loughborough-conformance.yml](conformance/loughborough-conformance.yml): `saml`,
-`shibboleth`, `lti`, `oai-pmh` (tenant), `datacite`. Probed and NOT found: `scim`, `oneroster`,
-`ed-fi`, `caliper`, `qti`, `crossref`, `orcid`.
+- [Loughborough Koha Public Libraries Example](https://apis.io/examples/loughborough/loughborough-koha-public-libraries-example/)
+- [Loughborough Moodle Lti Jwks Example](https://apis.io/examples/loughborough/loughborough-moodle-lti-jwks-example/)
 
-## Plans / Rate Limits / FinOps
+#### Security (1)
 
-- Plans & Pricing: [plans/loughborough-plans-pricing.yml](plans/loughborough-plans-pricing.yml)
-- Rate Limits: [rate-limits/loughborough-rate-limits.yml](rate-limits/loughborough-rate-limits.yml)
-- FinOps: [finops/loughborough-finops.yml](finops/loughborough-finops.yml)
+Authentication, trust centre, and vulnerability disclosure.
 
-## Timestamps
+- [Loughborough Domain Security](https://apis.io/security/loughborough/loughborough-domain-security/)
 
-- Created: 2026-06-03
-- Modified: 2026-08-30
+#### Plans and pricing (1)
 
-## Common Properties
+Published plans, tiers and prices.
 
-- Website: https://www.lboro.ac.uk/
-- LibraryCatalog: https://koha.lboro.ac.uk/api/v1/
-- ResearchRepository: https://repository.lboro.ac.uk/
-- IdentityFederation: http://metadata.ukfederation.org.uk/ukfederation-metadata.xml
-- GitHub: https://github.com/LoughboroughUniversity
-- LinkedIn: https://uk.linkedin.com/school/loughborough-university/
+- [Loughborough Plans Pricing](https://apis.io/plans/loughborough/loughborough-plans-pricing/)
 
-## Notes
+#### Rate limits (1)
 
-- No first-party developer portal, open-data portal or institution-authored OpenAPI was found, and
-  none was generated.
-- **Correction, 2026-08-30.** This profile previously attributed 22 vendor surfaces — all resolving
-  to `api.figshare.com`, the same contract 14 other universities in this cohort also carried — to
-  Loughborough, split into 11 `apis[]` entries over 10 per-tag OpenAPI copies. Those specs and
-  everything derived from them (schemas, structures, examples, rulesets, vocabulary, JSON-LD
-  context, scopes, authentication, agentic-access, capability edges, 20 collections) have been
-  removed. The repository is now recorded as ONE tenant relationship.
-- An Anubis bot challenge fronts the HTML paths on `koha.lboro.ac.uk` and `vufind.lboro.ac.uk`;
-  the JSON API paths pass through it. The Koha OAI-PMH responder could not be read because of it.
-- The official GitHub org exists and resolves (200) but lists zero public repositories.
-- No endpoints, docs, or properties were fabricated; only verifiable resources are listed, and
-  every claim above has a status code behind it in `apis.yml` `x-coverage.evidence` or
-  `conformance/`.
+Published request limits.
 
-## Maintainers
+- [Loughborough Rate Limits](https://apis.io/rate-limits/loughborough/loughborough-rate-limits/)
 
-- Kin Lane — kin@apievangelist.com
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Loughborough Finops](https://apis.io/finops/loughborough/loughborough-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.lboro.ac.uk/)
+- [Documentation](https://www.lboro.ac.uk/services/library/research-support/)
+- [Support](https://www.lboro.ac.uk/services/it/)
+- [Blog](https://www.lboro.ac.uk/news-events/rss/)
+- [Terms of service](https://www.lboro.ac.uk/disclaimer/)
+- [Privacy policy](https://www.lboro.ac.uk/privacy/)
+- [GitHub](https://github.com/LoughboroughUniversity)
+
+## API Evangelist rating
+
+**Kin Score 19.3** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 4.4 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 26.3 |
+
+**Agent readiness 0.6** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 18.6** — Education & Research
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/loughborough/](https://apis.io/providers/loughborough/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Loughborough University: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/loughborough/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
